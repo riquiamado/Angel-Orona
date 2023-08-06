@@ -19,6 +19,8 @@
     "express-fileupload": "^1.4.0",
     "fs-extra": "^11.1.1",
     "http-errors": "^2.0.0",
+    "jsonwebtoken": "^9.0.1",
+    "mercadopago": "^1.5.17",
     "mongoose": "^7.4.0",
     "morgan": "^1.10.0"
   },

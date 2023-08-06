@@ -1,5 +1,5 @@
-import { deleteImage, uploadImage } from "../../libs/cloudinary.js";
 import servicesModel from "../models/services.model.js";
+import {deleteImage, uploadImage} from "../libs/cloudinary.js"
 import fs from "fs-extra";
 
 export const getServices = async (req,res) => {
