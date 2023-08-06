@@ -1,5 +1,6 @@
 import userModel from "../models/user.model.js";
 import bcrypt from "bcrypt";
+import { generateToken } from "../libs/jwt.js";
 
 export const getUsers = async (req, res) => {
   try {
@@ -22,7 +23,14 @@ export const createUser = async (req, res) => {
       password: hashedPassword,
     });
     await newUser.save();
-    res.status(201).json(newUser);
+    const token = await generateToken({ id: newUser._id });
+    res.cookie("token", token);
+    res.status(201).json({
+      id: newUser._id,
+      fullName: newUser.fullName,
+      email: newUser.email,
+      phone: newUser.phone,
+    });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -65,7 +73,7 @@ export const updateUser = async (req, res) => {
 };
 
 export const deleteUser = async (req, res) => {
-    const { id } = req.params;
+  const { id } = req.params;
   try {
     const deletedUser = await userModel.findByIdAndDelete(id);
     if (deletedUser) {
@@ -76,4 +84,4 @@ export const deleteUser = async (req, res) => {
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
-}
+};

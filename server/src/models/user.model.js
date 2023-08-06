@@ -1,4 +1,4 @@
-import mongoose, { Schema } from "mongoose";
+import mongoose from "mongoose";
 
 const userSchema = mongoose.Schema(
   {
@@ -21,7 +21,7 @@ const userSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    turnos: [{ type: Schema.Types.ObjectId, res: "turnos" }],
+    turnos: [{ type: mongoose.Schema.ObjectId, res: "turnosModel" }],
   },
   {
     timeStamps: true,
